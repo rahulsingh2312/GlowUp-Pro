@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603329436949",
+    "project_id": "glowup-essentials",
+    "storage_bucket": "glowup-essentials.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603329436949:android:6e5d5ce9275c145f0c9d1c",
+        "android_client_info": {
+          "package_name": "com.example.glowup_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-j0D890wam55GJx2mK6ClxyJluurv3oE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
