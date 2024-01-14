@@ -1,12 +1,30 @@
 <resources>
-    <string name="app_name">GlowUp-Pro</string>
+    <string name="app_name">GlowUp-Essentials</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
+    <string name="first_fragment_label">GlowUp Home</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
     <string name="lorem_ipsum">
-       GLOW Up Pro </string>
+       GLOW Up Essentials </string>
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="Login">Login</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="age">age</string>
+    <string name="gender">gender</string>
+    <string name="weight">weight</string>
+    <string name="already_a_user_click_to_login">already a user? click to login</string>
+    <string name="not_a_user_register_now">Not a user? Register now</string>
+    <string name="glowup_essentials">GlowUp-Essentials</string>
+    <string name="logout">Logout</string>
+    <string name="hello_world">hello world</string>
+    <string name="subscribe_to_custom_alert">Subscribe to Custom Alert</string>
+    <string name="comimg_soon">Comimg soon</string>
+    <string name="coming_soon">coming_soon</string>
+    <string name="go_back">Go back</string>
 </resources>

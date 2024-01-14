@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    android:orientation="vertical">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:text="@string/glowup_essentials"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/material_dynamic_tertiary50"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <!-- Water Alerts Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/waterAlertIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/water"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Subscribe to Water Alerts"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/waterAlertCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Sunscreen Alerts Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/sunscreenAlertIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/sunscreen"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Subscribe to Sunscreen Alerts"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/sunscreenAlertCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Medication Alerts Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/medicationAlertIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/vitamine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Subscribe to Vitamin E Alerts"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/medicationAlertCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!-- Skin Care Alert 2 Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/skinCareAlert2Icon"
+                android:layout_width="48dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/moist" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Subscribe to Moisturizer Alert"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/skinCareAlert2Checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/skinCareAlert4Icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/retinol"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Subscribe to Retinol Alerts"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/skinCareAlert4Checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!-- Container for Custom Alert Cards -->
+    <LinearLayout
+        android:id="@+id/customAlertContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="8dp"/>
+
+
+    <!-- Custom Alert Input -->
+    <EditText
+        android:id="@+id/customAlertInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter custom alert text"
+        android:inputType="text"
+        android:layout_margin="8dp"/>
+
+    <!-- Button to Add Custom Alert Card -->
+    <Button
+        android:id="@+id/addCustomAlertButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Custom Alert"
+        android:layout_margin="8dp"
+        android:onClick="addCustomAlert"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnHealthWrap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Health Wrap"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/material_dynamic_primary100"
+            android:text="@string/logout"/>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>
