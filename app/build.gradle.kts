@@ -50,6 +50,9 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.6.0")
+    implementation("com.jjoe64:graphview:4.2.2")
+    implementation("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
+
     implementation("androidx.navigation:navigation-ui:2.6.0")
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-messaging:23.4.0")

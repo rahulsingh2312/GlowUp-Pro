@@ -8,24 +8,87 @@
     android:gravity="center"
     tools:context=".HealthWrap">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
- android:text="@string/coming_soon"
-    android:gravity="center"
-    />
-    <EditText
-        android:id="@+id/etToken"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/coming_soon"
-        android:gravity="center"
-        />
-<Button
-    android:layout_marginTop="20dp"
-    android:text="@string/go_back"
-    android:id="@+id/goBack"
-    android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-/>
+        android:layout_marginBottom="8dp"
+        android:text="Hello User!"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/fitnessComparisonTextView"
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="26dp"
+android:gravity="center"
+        android:text="fit comparison"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age: "
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/userNameTextView"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight: "
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/ageTextView"
+        android:layout_marginBottom="16dp"/>
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height: "
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/ageTextView"
+        android:layout_marginBottom="16dp"/>
+    <TextView
+        android:id="@+id/bmiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightTextView"
+        android:layout_marginTop="16dp"
+        android:text="BMI: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/healthGraph"
+        android:layout_width="361dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/bmiTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bmiTextView" />
+
+
+
+
+    <Button
+        android:id="@+id/goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/go_back" />
+
 </LinearLayout>

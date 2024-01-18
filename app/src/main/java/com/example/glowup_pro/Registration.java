@@ -1,5 +1,6 @@
 package com.example.glowup_pro;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,9 @@ public class Registration extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore firestore;
     private ProgressBar progressBar;
-    private TextInputEditText nameEditText, ageEditText, genderEditText, weightEditText, emailEditText, passwordEditText;
+    private TextInputEditText nameEditText, ageEditText, genderEditText, weightEditText, heightEditText, emailEditText, passwordEditText;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class Registration extends AppCompatActivity {
         weightEditText = findViewById(R.id.weight);
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
-
+        heightEditText = findViewById(R.id.height);
         Button registerButton = findViewById(R.id.btn_register);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +59,11 @@ public class Registration extends AppCompatActivity {
         final String age = ageEditText.getText().toString().trim();
         final String gender = genderEditText.getText().toString().trim();
         final String weight = weightEditText.getText().toString().trim();
+        final String height = heightEditText.getText().toString().trim();
         final String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        if (name.isEmpty() || age.isEmpty() || gender.isEmpty() || weight.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || age.isEmpty() || gender.isEmpty() || weight.isEmpty() || email.isEmpty() || password.isEmpty() || height.isEmpty()) {
             Toast.makeText(Registration.this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -75,7 +78,7 @@ public class Registration extends AppCompatActivity {
                             FirebaseUser user = auth.getCurrentUser();
                             if (user != null) {
                                 // Save user data to Firestore
-                                saveUserDataToFirestore(user.getUid(), name, age, gender, weight, email);
+                                saveUserDataToFirestore(user.getUid(), name, age, gender, weight, height,  email);
 
                                 Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
@@ -91,12 +94,13 @@ public class Registration extends AppCompatActivity {
                 });
     }
 
-    private void saveUserDataToFirestore(String userId, String name, String age, String gender, String weight, String email) {
+    private void saveUserDataToFirestore(String userId, String name, String age, String gender, String weight, String height, String email) {
         Map<String, Object> userData = new HashMap<>();
         userData.put("name", name);
         userData.put("age", age);
         userData.put("gender", gender);
         userData.put("weight", weight);
+        userData.put("height" , height);
         userData.put("email", email);
 
         firestore.collection("users").document(userId)

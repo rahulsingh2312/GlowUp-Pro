@@ -19,16 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.common.reflect.TypeToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.Gson;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +53,7 @@ public class Home extends AppCompatActivity {
         setupSubscribeCard(R.id.medicationAlertCheckbox, "Vitamin E Alerts");
         setupSubscribeCard(R.id.skinCareAlert2Checkbox, "Moisturizer Alert");
         setupSubscribeCard(R.id.skinCareAlert4Checkbox, "Retinol Alerts");
+        loadUserName();
 
         Button addCustomAlertButton = findViewById(R.id.addCustomAlertButton);
         addCustomAlertButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +85,26 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+    private void loadUserName() {
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DocumentReference userRef = firestore.collection("users").document(userId);
 
+            // Retrieve the user's name from Firestore
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    DocumentSnapshot document = task.getResult();
+                    String userName = document.getString("name");
+
+                    // Check if the name is not null, then set it to the TextView
+                    if (userName != null && !userName.isEmpty()) {
+                        TextView hieeTextView = findViewById(R.id.hiee);
+                        hieeTextView.setText("Hiee " + userName + " :3");
+                    }
+                }
+            });
+        }
+    }
     private void removeSubscriptionPreference(String subscriptionType) {
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -115,12 +133,30 @@ public class Home extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             showSubscriptionAlert(subscriptionType, isChecked);
+
+                            // Subscribe or unsubscribe the user to/from the corresponding FCM topic
+                            updateTopicSubscription(subscriptionType, isChecked);
                         } else {
                             // Handle the error
                         }
                     });
         }
     }
+    private void updateTopicSubscription(String subscriptionType, boolean isChecked) {
+        String topic = getTopicForSubscription(subscriptionType);
+        if (isChecked) {
+            FirebaseMessaging.getInstance().subscribeToTopic(topic);
+        } else {
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(topic);
+        }
+    }
+
+    private String getTopicForSubscription(String subscriptionType) {
+        // Convert subscription type to a topic name
+        // Modify as needed based on your naming convention
+        return subscriptionType.replaceAll("\\s+", "_").toLowerCase();
+    }
+
 
     private void loadUserPreferences() {
         if (currentUser != null) {
@@ -187,21 +223,36 @@ public class Home extends AppCompatActivity {
         }
 
     }
-
-
     private void displayCustomAlert(String customAlertText) {
         // Create a new CardView for the custom alert
+
+        // Create a new ImageView for the bell image
+
+        // Create a new ImageView for the bell image
+        ImageView bellImageView = new ImageView(Home.this);
+        // Set the bell image resource from mipmap (replace "your_bell_icon" with the actual name)
+        bellImageView.setImageResource(R.mipmap.bell_icon_foreground);
+        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(
+                105, // Adjust the width (in pixels) as needed
+                105, // Adjust the height (in pixels) as needed
+                0.0f // Set weight to 0 so that it doesn't affect the layout
+        );
+        bellImageView.setPadding(18, 8, 8, 8);
+        imageLayoutParams.setMargins(18, 8, 8, 8);
+        bellImageView.setLayoutParams(imageLayoutParams);
+
         CardView customAlertCard = new CardView(Home.this);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        layoutParams.setMargins(8, 8, 8, 8);
-        customAlertCard.setLayoutParams(layoutParams);
+        cardLayoutParams.setMargins(8, 8, 8, 8);
+        customAlertCard.setLayoutParams(cardLayoutParams);
 
-        // Create a new LinearLayout to hold the text and delete button
+        // Create a new LinearLayout to hold the text, bell image, and delete button
         LinearLayout alertLayout = new LinearLayout(Home.this);
         alertLayout.setOrientation(LinearLayout.HORIZONTAL);
+        alertLayout.setGravity(Gravity.CENTER);
 
         // Create a new TextView for the custom alert text
         TextView customAlertTextView = new TextView(Home.this);
@@ -209,19 +260,19 @@ public class Home extends AppCompatActivity {
         customAlertTextView.setTextSize(20);
         customAlertTextView.setTextColor(getResources().getColor(android.R.color.black));
         customAlertTextView.setGravity(Gravity.CENTER);
-        customAlertTextView.setPadding(6, 16, 36, 16);
+        customAlertTextView.setPadding(6, 16, 0, 16);
+        LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1.0f
+        );
+        customAlertTextView.setLayoutParams(textLayoutParams);
 
         // Create a delete button (cross emoji)
         TextView deleteButton = new TextView(Home.this);
         deleteButton.setText("❌");
         deleteButton.setTextSize(20);
         deleteButton.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-        LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        buttonLayoutParams.gravity = Gravity.END; // Align to the right
-        deleteButton.setLayoutParams(buttonLayoutParams);
         deleteButton.setOnClickListener(view -> {
             // Call the method to delete the custom alert
             deleteCustomAlert(customAlertText);
@@ -229,9 +280,11 @@ public class Home extends AppCompatActivity {
             customAlertContainer.removeView(customAlertCard);
         });
 
-        // Add the TextView and delete button to the LinearLayout
 
+        // Add the TextView, ImageView, and delete button to the LinearLayout
+        alertLayout.addView(bellImageView);
         alertLayout.addView(customAlertTextView);
+
         alertLayout.addView(deleteButton);
 
         // Add the LinearLayout to the CardView
