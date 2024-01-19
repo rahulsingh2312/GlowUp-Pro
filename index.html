@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Version 1.0</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 50px;
+    }
+    .download-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #00FF00;
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .download-button:hover {
+      background-color: #000;
+      color: #00FF00;
+    }
+  </style>
+</head>
+<body>
+  <a href="path/to/your/file.apk" class="download-button" download onclick="showDownloadAlert()">Download Version 1.0</a>
+
+  <script>
+    function showDownloadAlert() {
+      alert("Your download should have started!");
+    }
+  </script>
+</body>
+</html>
